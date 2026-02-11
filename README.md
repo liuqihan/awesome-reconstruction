@@ -1,7 +1,26 @@
-# awesome-reconstruction
+                                                                                                                                                                                                                                                                                                                                                                      # awesome-reconstruction
 This repo is build for scenario/scene reconstruction used in autonomous driving, and mainly focus on 3DGS/4DGS 
+一些值得关注的公众号：
+- 3DCVer（3D视觉工坊）
+- 3DCV
+- 3D视觉之心
+- 自动驾驶之心
+----
+## 0. 基于优化的3DGS
+### 0.1. DashGaussian: Optimizing 3D Gaussian Splatting in 200 Seconds
+   - papper:https://arxiv.org/abs/2503.18402
+   - repo: https://github.com/YouyuChen0207/DashGaussian
+
+### 0.2. DrivingGaussian++: Towards Realistic Reconstruction and Editable Simulation for Surrounding Dynamic Driving Scenes
+   - papper:https://arxiv.org/pdf/2508.20965
+   - project page: https://xiong-creator.github.io/DrivingGaussian_plus.github.io/
+   - repo:
 
 ## 1. Feed-Forward Gaussian:
+### 1.0. DriveVGGT: Visual Geometry Transformer for Autonomous Driving
+   - papper:https://www.arxiv.org/pdf/2511.22264
+   - repo: 
+
 ### 1.1. Omni-Scene: Omni-Gaussian Representation for Ego-Centric Sparse-View Scene Reconstruction
    - papper: https://wswdx.github.io/omniscene/assets/paper.pdf
    - repo:  https://github.com/WU-CVGL/Omni-Scene repo:
@@ -16,6 +35,14 @@ This repo is build for scenario/scene reconstruction used in autonomous driving,
    - project page: https://mystorm16.github.io/fastvggt/
    - papper: https://arxiv.org/abs/2509.02560
    - repo: https://github.com/mystorm16/FastVGGT
+
+### 1.4 流式重建，Instant Gaussian Stream: Fast and Generalizable Streaming of Dynamic Sc​​ene Restruction via Gaussian Splatting [CVPR25]
+   - papper：https://arxiv.org/pdf/2503.16979
+   - repo ： https://github.com/yjb6/IGS?tab=readme-ov-file
+
+### 1.5. DGGT: Feedforward 4D Reconstruction of Dynamic Driving Scenes Using Unposed Images
+   - papper: https://arxiv.org/abs/2512.03004
+   - repo: https://github.com/xiaomi-research/dggt
 
 ## 2. 3D-Segmentation
 ### 1.1 Online Segment Any 3D Thing as Instance Tracking
@@ -43,10 +70,16 @@ This repo is build for scenario/scene reconstruction used in autonomous driving,
    - repo: https://github.com/qingpowuwu/emd
    - intro: 一个适配场景重建时车速不同的即插即用模块
 
-#### 1.3 CityGaussianV2: Efficient and Geometrically Accurate Reconstruction for Large-Scale Scenes
+## 6. 分布式，分块重建方法
+#### 1.1 CityGaussianV2: Efficient and Geometrically Accurate Reconstruction for Large-Scale Scenes
    - papper：https://arxiv.org/abs/2411.00771
    - repo：https://github.com/Linketic/CityGaussian
    - intro：解决2DGS的显存爆炸问题。
+
+### 1.2. BlockGaussian: Efficient Large-Scale Scene Novel View Synthesis via Adaptive Block-Based Gaussian Splatting
+   - papper：https://arxiv.org/abs/2504.09048
+   - repo: https://github.com/SunshineWYC/BlockGaussian
+     
 ## 6. 3dgs-激光雷达点云
 ### 1.1. FGGS-LiDAR: Ultra-Fast, GPU-Accelerated Simulation from General 3DGS Models to LiDAR
    - papper：https://arxiv.org/pdf/2509.17390
@@ -56,25 +89,25 @@ This repo is build for scenario/scene reconstruction used in autonomous driving,
 
 ## 如何“有效复现”
 ### 1. 构建自有数据集：破解“数据依赖”困局
-开源论文常依赖特定数据集（如nuScenes、COCO），但受限数据会导致复现结果泛化性差。自主采集数据可突破这一限制
+   开源论文常依赖特定数据集（如nuScenes、COCO），但受限数据会导致复现结果泛化性差。自主采集数据可突破这一限制
 
-#### 1.1. 小规模DIY采集：
-使用性价比高的3D扫描仪、手机+LiDAR扫描App（如Polycam）采集物体点云，适配3D重建论文（如Omni-Scene）；运动相机多机位同步拍摄动态场景（如人/车运动），解决动态重建数据缺失问题（如SLAM3R需长序列视频）。用SAM+人工修正生成掩码，替代专业标注工具。
-#### 1.2. 合成数据生成：
-使用Blender生成带精确深度图的3D物体（适配SPAR3D单图重建）；用UE5引擎构建虚拟街道场景，替代自动驾驶数据集（如CityGaussianV2的1.97km²重建需求。
+   #### 1.1. 小规模DIY采集：
+      使用性价比高的3D扫描仪、手机+LiDAR扫描App（如Polycam）采集物体点云，适配3D重建论文（如Omni-Scene）；运动相机多机位同步拍摄动态场景（如人/车运动），解决动态重建数据缺失问题（如SLAM3R需长序列视频）。用SAM+人工修正生成掩码，替代专业标注工具。
+   #### 1.2. 合成数据生成：
+      使用Blender生成带精确深度图的3D物体（适配SPAR3D单图重建）；用UE5引擎构建虚拟街道场景，替代自动驾驶数据集（如CityGaussianV2的1.97km²重建需求。
 
 ### 2. 建立多维度Benchmark：超越论文单一指标
-#### 2.1. 扩展公开数据集
-#### 2.2. 设计压力测试集：
-极端条件下低光照/运动模糊数据测试SLAM稳定性（如Hier-SLAM的语义建图）；用艺术画作测试单图3D重建（如Craftsman3D），验证开放场景适应性
+   #### 2.1. 扩展公开数据集
+   #### 2.2. 设计压力测试集：
+      极端条件下低光照/运动模糊数据测试SLAM稳定性（如Hier-SLAM的语义建图）；用艺术画作测试单图3D重建（如Craftsman3D），验证开放场景适应性
 
 ### 3. 复现中的关键技术策略
-#### 3.1. 模块替换实验：
-将BG-Triangle的贝塞尔三角形渲染器替换为传统光栅化，分析边界模糊改善机制；在CityGaussianV2中插入Depth-Anything-V2模块，验证深度估计对重建精度影响。
-#### 3.2. 失败归因文档化：
-记录复现中出现的显存溢出、数据格式错误等，并提交Pull Request修复（如补充缺失的data_loader.py）
+   #### 3.1. 模块替换实验：
+      将BG-Triangle的贝塞尔三角形渲染器替换为传统光栅化，分析边界模糊改善机制；在CityGaussianV2中插入Depth-Anything-V2模块，验证深度估计对重建精度影响。
+   #### 3.2. 失败归因文档化：
+      记录复现中出现的显存溢出、数据格式错误等，并提交Pull Request修复（如补充缺失的data_loader.py）
 ### 4. 知识沉淀：构建可复用的研究资产
-#### 4.1. 数据管道标准化：
-将自采数据集转换为通用格式（如COCO式标注），发布至Hugging Face Datasets供社区验证；
-#### 4.2. 开发最小复现包（MRE）：
-剥离论文非核心模块，发布仅含模型+推理脚本的轻量化仓库（如Craftsman3D的法线优化器独立模块）
+   #### 4.1. 数据管道标准化：
+      将自采数据集转换为通用格式（如COCO式标注），发布至Hugging Face Datasets供社区验证；
+   #### 4.2. 开发最小复现包（MRE）：
+      剥离论文非核心模块，发布仅含模型+推理脚本的轻量化仓库（如Craftsman3D的法线优化器独立模块）
